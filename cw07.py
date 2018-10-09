@@ -58,7 +58,16 @@ def gen_gaussian_array(a, b, n=1000):
             x  : [a, ..., b] Array of n equally spaced float64 between a and b
             g  : [g(a), ..., g(b)] Array of Gaussian values matched to x
     """
-    pass
+    
+    dx = (b-a)/(n-1)                                                  # spacing between points
+    x = np.array([a + k*dx for k in range(n)], dtype = np.float64)    # domain list
+    
+    # Local implementation of a Gaussian function
+    def gauss(x):
+        return (1/math.sqrt(2*math.pi))*math.exp(-x**2/2)
+    
+    g = np.array([gauss(xk) for xk in x], dtype = np.float64)         # range list
+    return (x, g)
 
 
 def main(a,b,n=1000):
@@ -77,12 +86,11 @@ def main(a,b,n=1000):
         Prints Gaussian to screen.
     """
     # You can unpack tuples as return values easily
-    x, g = gen_gaussian_list(a,b,n)
+    x1, g1 = gen_gaussian_list(a,b,n)
     # The zip function takes two lists and generates a list of matched pairs
-    for (xk, gk) in zip(x, g):
+    for (x1k, g1k) in zip(x1, g1):
         # The format command replaces each {} with the value of a variable
-        print("({}, {})".format(xk, gk))
-
+        print("({}, {})".format(x1k, g1k))
 
 # Protected main block for command line operation
 if __name__ == "__main__":
