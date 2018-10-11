@@ -65,6 +65,28 @@ def gen_gaussian_array(a, b, n=1000):
     # Local implementation of a Gaussian function
     return (x, (1/np.sqrt(2*np.pi))*np.exp(-x**2/2))
 
+def gen_sinc_list(a, b, n=1000):
+    """
+    Args:
+        a (float) : Lower bound of domain
+        b (float) : Upper bound of domain
+        n (int, optional) : Number of points in domain, defaults to 1000.
+    Returns:
+        (x, g) : Pair of lists of floats
+        x  : [a, ..., b] List of n equally spaced floats between a and b
+        g  : [g(a), ..., g(b)] List of sinc values matched to x
+    """
+    dx = (b-a)/(n-1)                         # spacing between points
+    x = [a + k*dx for k in range(n)]         # domain list
+    
+    # Local implementation of a sinc function
+    def sinc(x):
+        return ((math.sin(x))/x)
+    
+    g = [sinc(xk) for xk in x]                  # range list
+    return (x, g)
+    
+    
 
 def main(a,b,n=1000):
     """main(a, b, n=1000)
