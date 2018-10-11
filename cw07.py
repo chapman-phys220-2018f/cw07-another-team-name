@@ -59,15 +59,11 @@ def gen_gaussian_array(a, b, n=1000):
             g  : [g(a), ..., g(b)] Array of Gaussian values matched to x
     """
     
-    dx = (b-a)/(n-1)                                                  # spacing between points
-    x = np.array([a + k*dx for k in range(n)], dtype = np.float64)    # domain list
-    
+    #dx = (b-a)/(n-1)                                                  # spacing between points
+    #x = np.array([a + k*dx for k in range(n)], dtype = np.float64)    # domain list
+    x = np.linspace(a,b,endpoint=True,num=n)
     # Local implementation of a Gaussian function
-    def gauss(x):
-        return (1/math.sqrt(2*math.pi))*math.exp(-x**2/2)
-    
-    g = np.array([gauss(xk) for xk in x], dtype = np.float64)         # range list
-    return (x, g)
+    return (x, (1/np.sqrt(2*np.pi))*np.exp(-x**2/2))
 
 
 def main(a,b,n=1000):
