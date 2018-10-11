@@ -78,12 +78,34 @@ def gen_sinc_list(a, b, n=1000):
     """
     dx = (b-a)/(n-1)                         # spacing between points
     x = [a + k*dx for k in range(n)]         # domain list
+    x = [z for z in x if z != 0]
     
     # Local implementation of a sinc function
     def sinc(x):
         return ((math.sin(x))/x)
     
     g = [sinc(xk) for xk in x]                  # range list
+    return (x, g)
+    
+def gen_sinc_array(a, b, n=1000):
+    """gen_sinc_array(a, b, n=1000)
+    Generate a discrete approximation of a sinc function, including its
+    domain and range, stored as a pair of numpy arrays.
+    
+    Args:
+        a (float) : Lower bound of domain
+        b (float) : Upper bound of domain
+        n (int, optional) : Number of points in domain, defaults to 1000.
+    
+    Returns:
+        (x, g) : Pair of numpy arrays of float64
+            x  : [a, ..., b] Array of n equally spaced float64 between a and b
+            g  : [g(a), ..., g(b)] Array of sinc values matched to x
+    """
+    
+    x = np.linspace(a,b,endpoint=True,num=n)
+    g = np.ones_like(x)
+    np.divide(np.sin(x), x, where=x!=0, out=g)
     return (x, g)
     
     
