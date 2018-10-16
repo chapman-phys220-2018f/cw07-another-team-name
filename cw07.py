@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 ###
-# Name: YOUR_FULL_NAME_HERE
-# Student ID: ID_HERE
-# Email: CHAPMAN_EMAIL_HERE
+# Name: Grady Lynch, Jacob Anabi
+# Student ID: 02297574, 2294644
+# Email: grlynch@chapman.edu, anabi@chapman.edu
 # Course: PHYS220/MATH220/CPSC220 Fall 2018
-# Assignment: HOMEWORK_OR_CLASSWORK_NUMBER
+# Assignment: CW07
 ###
 
 """Classwork 07
